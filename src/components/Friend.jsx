@@ -23,9 +23,7 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
 
   const patchFriend = async () => {
     const response = await fetch(
-      `https://my-linkedin-clone-backend.onrender.com
-
-      /users/${_id}/${friendId}`,
+      `https://my-linkedin-clone-backend.onrender.com/users/${_id}/${friendId}`,
       {
         method: "PATCH",
         headers: {
