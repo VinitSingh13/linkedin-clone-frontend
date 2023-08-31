@@ -13,7 +13,7 @@ const LoginPage = () => {
         textAlign="center"
       >
         <Typography fontWeight="bold" fontSize="32px" color="primary">
-          Linkedin-Clone
+          Social Media
         </Typography>
       </Box>
 
@@ -25,7 +25,7 @@ const LoginPage = () => {
         backgroundColor={theme.palette.background.alt}
       >
         <Typography fontWeight="500" variant="h5" sx={{ mb: "1.5rem" }}>
-          Welcome to Linkedin-Clone, get started with new career!
+          Welcome to Social Media App, chat with friends, share photos, comment your views and more!!
         </Typography>
         <Form />
       </Box>

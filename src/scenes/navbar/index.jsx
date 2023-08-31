@@ -9,6 +9,7 @@ import {
   FormControl,
   useTheme,
   useMediaQuery,
+  Badge,
 } from "@mui/material";
 import {
   Search,
@@ -31,6 +32,7 @@ const Navbar = () => {
   const navigate = useNavigate();
   const user = useSelector((state) => state.user);
   const isNonMobileScreen = useMediaQuery("(min-width:1000px)");
+  const [invisible, setInvisible] = useState(false);
   const theme = useTheme();
   const neutralLight = theme.palette.neutral.light;
   const dark = theme.palette.neutral.dark;
@@ -55,7 +57,7 @@ const Navbar = () => {
             },
           }}
         >
-          LINKEDIN-CLONE
+          Social Media
         </Typography>
         {isNonMobileScreen && (
           <FlexBetween
@@ -80,7 +82,12 @@ const Navbar = () => {
               <LightMode sx={{ color: dark, fontSize: "25px" }} />
             )}
           </IconButton>
-          <Message sx={{ fontSize: "25px" }} />
+          <IconButton onClick={() => setInvisible(!invisible)}>
+            <Badge color="error" variant="dot" invisible={invisible}>
+              <Message sx={{ fontSize: "25px" }} />
+            </Badge>
+          </IconButton>
+
           <Notifications sx={{ fontSize: "25px" }} />
           <Help sx={{ fontSize: "25px" }} />
           <FormControl variant="standard" value={fullName}>
@@ -150,7 +157,12 @@ const Navbar = () => {
                 <LightMode sx={{ color: dark, fontSize: "25px" }} />
               )}
             </IconButton>
-            <Message sx={{ fontSize: "25px" }} />
+            <IconButton onClick={() => setInvisible(!invisible)}>
+              <Badge color="error" variant="dot" invisible={invisible}>
+                <Message sx={{ fontSize: "25px" }} />
+              </Badge>
+            </IconButton>
+
             <Notifications sx={{ fontSize: "25px" }} />
             <Help sx={{ fontSize: "25px" }} />
             <FormControl variant="standard" value={fullName}>
