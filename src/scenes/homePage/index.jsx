@@ -16,9 +16,7 @@ const HomePage = () => {
   // const [socket,setSocket] = useState(null)
 
   useEffect(() => {
-    const socket = io("https://mern-linkedin-clone-backend.onrender.com", {
-      transports: ["websocket", "polling", "flashsocket"],
-    });
+    const socket = io("https://mern-linkedin-clone-backend.onrender.com");
   }, []);
 
   return (
