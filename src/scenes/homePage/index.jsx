@@ -6,10 +6,20 @@ import MyPostWidget from "scenes/widgets/MyPostWidget";
 import PostsWidget from "scenes/widgets/PostsWidget";
 import AdvertWidget from "scenes/widgets/AdvertWidget";
 import FriendListWidget from "scenes/widgets/FriendListWidget";
+import { useEffect, useState } from "react";
+import { io } from "socket.io-client";
 
 const HomePage = () => {
   const isNonMobileScreens = useMediaQuery("(min-width:1000px)");
   const { _id, picturePath } = useSelector((state) => state.user);
+
+  // const [socket,setSocket] = useState(null)
+
+  useEffect(() => {
+    const socket = io("https://mern-linkedin-clone-backend.onrender.com", {
+      transports: ["websocket", "polling", "flashsocket"],
+    });
+  }, []);
 
   return (
     <Box>
