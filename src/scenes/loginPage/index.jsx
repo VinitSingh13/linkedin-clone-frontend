@@ -25,7 +25,8 @@ const LoginPage = () => {
         backgroundColor={theme.palette.background.alt}
       >
         <Typography fontWeight="500" variant="h5" sx={{ mb: "1.5rem" }}>
-          Welcome to Social Media App, chat with friends, share photos, comment your views and more!!
+          Welcome to Social Media App, chat with friends, share photos, comment
+          your views and more!!
         </Typography>
         <Form />
       </Box>

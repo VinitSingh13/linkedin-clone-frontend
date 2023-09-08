@@ -44,6 +44,19 @@ const Message = () => {
     setMessages(msg);
   };
 
+  const updateMsgStatus = async () => {
+    const res = await fetch(
+      `https://my-linkedin-clone-backend.onrender.com/message/updatestatus/${userId}`,
+      {
+        method: "PUT",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+  };
+
   const handleSendMsg = async (msg) => {
     await fetch("https://my-linkedin-clone-backend.onrender.com/message/addmsg", {
       method: "POST",
@@ -57,7 +70,9 @@ const Message = () => {
         message: msg,
       }),
     });
-    socket.emit("send-msg", msg, userId);
+    socket.emit("send-msg", msg, userId, user._id);
+
+    socket.emit("sender-complete-info", user);
 
     const msgs = [...messages];
     msgs.push({ fromSelf: true, message: msg });
@@ -73,18 +88,23 @@ const Message = () => {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
+    return () => {
+      socket.disconnect();
+    };
+  }, []);
+
+  useEffect(() => {
     sentMsg && setMessages((prev) => [...prev, sentMsg]);
   }, [sentMsg]);
 
   useEffect(() => {
-    socket.on("received-msg", (msg, receiverId) => {
+    socket.on("received-msg", (msg, receiverId, senderId) => {
       if (receiverId === user._id) {
-        console.log(receiverId, user._id)
         setSentMsg({ fromSelf: false, message: msg });
+        updateMsgStatus();
       }
     });
   }, []);
-
 
   return (
     <Box

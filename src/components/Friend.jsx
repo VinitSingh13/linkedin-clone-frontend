@@ -40,6 +40,26 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
     dispatch(setFriends({ friends: data }));
   };
 
+
+  const viewFriendMsg = ()=>{
+    updateMsgStatus();
+    navigate(`/message/${friendId}`)
+
+  }
+
+  const updateMsgStatus = async () => {
+    const res = await fetch(
+      `https://my-linkedin-clone-backend.onrender.com/message/updatestatus/${friendId}`,
+      {
+        method: "PUT",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+  };
+
   return (
     <FlexBetween>
       <FlexBetween gap="1rem">
@@ -78,7 +98,7 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
           <PersonAddOutlined sx={{ color: primaryDark }} />
         )}
       </IconButton>
-      <IconButton onClick={() => navigate(`/message/${friendId}`)}>
+      <IconButton onClick={viewFriendMsg}>
         <Message />
       </IconButton>
     </FlexBetween>
