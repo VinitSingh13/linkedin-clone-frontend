@@ -212,9 +212,12 @@ const Navbar = () => {
                 >
                   {messages.map((message) => {
                     return (
-                      <ListItem
+                      <ListItem 
                         disablePadding
                         onClick={() => messageStatusHandler(message.senderId)}
+                        sx={{
+                          color:"white"
+                        }}
                       >
                         <ListItemButton>
                           <ListItemAvatar>
